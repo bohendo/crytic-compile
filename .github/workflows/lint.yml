@@ -12,17 +12,17 @@ on:
 
 jobs:
   lint:
-    name: Lint Code Base
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        type: ["black", "darglint", "mypy", "pylint"]
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-
       - name: Set up nix
         uses: cachix/install-nix-action@v18
-
       - name: Install just
         run: nix-env -iA nixpkgs.just
-
       - name: Lint everything
-        run: just lint
+        run: just ${{ matrix.type }}
