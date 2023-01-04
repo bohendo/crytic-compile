@@ -19,12 +19,9 @@ jobs:
         uses: cachix/install-nix-action@v18
         with:
           nix_path: nixpkgs=channel:nixos-unstable
-      - name: Check nix setup
-        run: |
-          nix --version
-          which nix-env
-          realpath $(which nix-shell)
-          echo $HOME
-          ls -al $HOME
+      - uses: cachix/cachix-action@v11
+        with:
+          name: crytic-compile
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
       - name: run linter
         run: nix-shell -p just --run "just ${{ matrix.type }}"
