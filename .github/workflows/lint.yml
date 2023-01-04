@@ -1,11 +1,6 @@
 ---
 name: Lint Code Base
 
-defaults:
-  run:
-    # To load bashrc
-    shell: bash -ieo pipefail {0}
-
 on:
   pull_request:
     branches: [master, dev]
