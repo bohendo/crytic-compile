@@ -22,5 +22,9 @@ jobs:
           nix --version
           which nix-env
           realpath $(which nix-shell)
+          echo $HOME
+          ls -al $HOME
       - name: Lint everything
-        run: nix-shell -p just --run "just ${{ matrix.type }}"
+        run: |
+          export NIX_PATH=$HOME/.nix-defexpr/channels
+          nix-shell -p just --run "just ${{ matrix.type }}"
