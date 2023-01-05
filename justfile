@@ -31,7 +31,8 @@ mypy:
   nix-build nix/mypy.nix > /dev/null
   @echo "Running mypy.."
   ./result/bin/mypy --version
-  ./result/bin/mypy crytic_compile
+  # TODO: remove --no-site-packages flag once type libs are properly loaded
+  ./result/bin/mypy --no-site-packages crytic_compile
 
 pylint:
   @echo -e "\nBuilding pylint.."
