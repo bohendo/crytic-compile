@@ -31,7 +31,7 @@ mypy:
   nix-build nix/mypy.nix > /dev/null
   @echo "Running mypy.."
   ./result/bin/mypy --version
-  ./result/bin/mypy --non-interactive --install-types crytic_compile
+  ./result/bin/mypy crytic_compile
 
 pylint:
   @echo -e "\nBuilding pylint.."
